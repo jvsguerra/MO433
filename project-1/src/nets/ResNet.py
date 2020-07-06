@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
 class WNConv2d(nn.Module):
     """Weight-normalized 2d convolution.
     Args:
@@ -64,7 +63,7 @@ class ResNet(nn.Module):
     def __init__(self, cin, cmid, cout, nblocks, kernel, padding, double_after_norm):
         super(ResNet, self).__init__()
 
-        # Info
+        # Attributes
         self.batch_norm_in = nn.BatchNorm2d(cin)
         self.double_after_norm = double_after_norm
         self.conv_in = WNConv2d(2 * cin, cmid, kernel, padding, bias=True)

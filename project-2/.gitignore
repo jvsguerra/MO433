@@ -1,0 +1,25 @@
+# Files to ignore
+
+# Input
+input/cifar-10-*
+input/batch/*.pth
+input/optim/*/*.pth
+input/simfunc/*/*.pth
+input/final/*.pth
+input/models/*
+*.zip
+
+# Output
+output/
+
+# Report
+report/*
+!report/images
+!report/*.tex
+!report/*.pdf
+
+# Debug
+src/__pycache__/
+src/*.pyc
+src/*/__pycache__/
+src/*/*.pyc

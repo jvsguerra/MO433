@@ -3,6 +3,82 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 
+from nets.CouplingLayer import CouplingLayer
+
+mask_checkboard = 0
+mask_channelwise = 1
+
+
+def squeeze_2x2(x, reverse=False, alt_order=False):
+    """For each spatial position, a sub-volume of shape `1x1x(N^2 * C)`,
+    reshape into a sub-volume of shape `NxNxC`, where `N = block_size`.
+    Adapted from:
+        https://github.com/tensorflow/models/blob/master/research/real_nvp/real_nvp_utils.py
+    See Also:
+        - TensorFlow nn.depth_to_space: https://www.tensorflow.org/api_docs/python/tf/nn/depth_to_space
+        - Figure 3 of RealNVP paper: https://arxiv.org/abs/1605.08803
+    Args:
+        x (torch.Tensor): Input tensor of shape (B, C, H, W).
+        reverse (bool): Whether to do a reverse squeeze (unsqueeze).
+        alt_order (bool): Whether to use alternate ordering.
+    """
+    block_size = 2
+    if alt_order:
+        n, c, h, w = x.size()
+
+        if reverse:
+            if c % 4 != 0:
+                raise ValueError('Number of channels must be divisible by 4, got {}.'.format(c))
+            c //= 4
+        else:
+            if h % 2 != 0:
+                raise ValueError('Height must be divisible by 2, got {}.'.format(h))
+            if w % 2 != 0:
+                raise ValueError('Width must be divisible by 4, got {}.'.format(w))
+        # Defines permutation of input channels (shape is (4, 1, 2, 2)).
+        squeeze_matrix = torch.tensor([[[[1., 0.], [0., 0.]]],
+                                       [[[0., 0.], [0., 1.]]],
+                                       [[[0., 1.], [0., 0.]]],
+                                       [[[0., 0.], [1., 0.]]]],
+                                      dtype=x.dtype,
+                                      device=x.device)
+        perm_weight = torch.zeros((4 * c, c, 2, 2), dtype=x.dtype, device=x.device)
+        for c_idx in range(c):
+            slice_0 = slice(c_idx * 4, (c_idx + 1) * 4)
+            slice_1 = slice(c_idx, c_idx + 1)
+            perm_weight[slice_0, slice_1, :, :] = squeeze_matrix
+        shuffle_channels = torch.tensor([c_idx * 4 for c_idx in range(c)]
+                                        + [c_idx * 4 + 1 for c_idx in range(c)]
+                                        + [c_idx * 4 + 2 for c_idx in range(c)]
+                                        + [c_idx * 4 + 3 for c_idx in range(c)])
+        perm_weight = perm_weight[shuffle_channels, :, :, :]
+
+        if reverse:
+            x = F.conv_transpose2d(x, perm_weight, stride=2)
+        else:
+            x = F.conv2d(x, perm_weight, stride=2)
+    else:
+        b, c, h, w = x.size()
+        x = x.permute(0, 2, 3, 1)
+
+        if reverse:
+            if c % 4 != 0:
+                raise ValueError('Number of channels {} is not divisible by 4'.format(c))
+            x = x.view(b, h, w, c // 4, 2, 2)
+            x = x.permute(0, 1, 4, 2, 5, 3)
+            x = x.contiguous().view(b, 2 * h, 2 * w, c // 4)
+        else:
+            if h % 2 != 0 or w % 2 != 0:
+                raise ValueError('Expected even spatial dims HxW, got {}x{}'.format(h, w))
+            x = x.view(b, h // 2, 2, w // 2, 2, c)
+            x = x.permute(0, 1, 3, 5, 2, 4)
+            x = x.contiguous().view(b, h // 2, w // 2, c * 4)
+
+        x = x.permute(0, 3, 1, 2)
+
+    return x
+
+
 class Flow(nn.Module):
     """
     args:
@@ -37,7 +113,7 @@ class Flow(nn.Module):
 
             # Get log-determinant of Jacobian matrix
             log_det = F.softplus(x) + F.softplus(-x) - F.softplus((1. - self.bounds).log() - self.bounds.log())
-            sum_log_det = log_det.view(log_det.size(0), -1).sum(-1) #TODO: mudar
+            sum_log_det = log_det.reshape(log_det.size(0), -1).sum(-1)
         
         # Flow
         x, sum_log_det = self.flows(x, sum_log_det, reverse)
@@ -57,10 +133,7 @@ class Flow(nn.Module):
             y = (x * 255.0 + torch.distributions.Uniform(0.0, 1.0).sample(x.shape).to(self.device)) / 256.0
         return y
 
-
 # TODO: Fixme
-from CouplingLayer import CouplingLayer
-from misc import squeeze_2x2
 
 class _Flow(nn.Module):
     """Recursive builder for a `RealNVP` model.
@@ -80,19 +153,19 @@ class _Flow(nn.Module):
         self.is_last_block = scale_idx == num_scales - 1
 
         self.in_couplings = nn.ModuleList([
-            CouplingLayer(in_channels, mid_channels, num_blocks, 0, reverse_mask=False),
-            CouplingLayer(in_channels, mid_channels, num_blocks, 0, reverse_mask=True),
-            CouplingLayer(in_channels, mid_channels, num_blocks, 0, reverse_mask=False)
+            CouplingLayer(in_channels, mid_channels, num_blocks, mask_checkboard, reverse_mask=False),
+            CouplingLayer(in_channels, mid_channels, num_blocks, mask_checkboard, reverse_mask=True),
+            CouplingLayer(in_channels, mid_channels, num_blocks, mask_checkboard, reverse_mask=False)
         ])
 
         if self.is_last_block:
             self.in_couplings.append(
-                CouplingLayer(in_channels, mid_channels, num_blocks, 0, reverse_mask=True))
+                CouplingLayer(in_channels, mid_channels, num_blocks, mask_checkboard, reverse_mask=True))
         else:
             self.out_couplings = nn.ModuleList([
-                CouplingLayer(4 * in_channels, 2 * mid_channels, num_blocks, 1, reverse_mask=False),
-                CouplingLayer(4 * in_channels, 2 * mid_channels, num_blocks, 1, reverse_mask=True),
-                CouplingLayer(4 * in_channels, 2 * mid_channels, num_blocks, 1, reverse_mask=False)
+                CouplingLayer(4 * in_channels, 2 * mid_channels, num_blocks, mask_channelwise, reverse_mask=False),
+                CouplingLayer(4 * in_channels, 2 * mid_channels, num_blocks, mask_channelwise, reverse_mask=True),
+                CouplingLayer(4 * in_channels, 2 * mid_channels, num_blocks, mask_channelwise, reverse_mask=False)
             ])
             self.next_block = _Flow(scale_idx + 1, num_scales, 2 * in_channels, 2 * mid_channels, num_blocks)
 
@@ -148,3 +221,18 @@ class Loss(nn.Module):
         log_likelihood = prior + sum_log_det
         negative_log_likelihood = -log_likelihood.mean()
         return negative_log_likelihood
+
+
+class LossMeter(object):
+
+    def __init__(self):
+        # self.val = 0.0
+        self.avg = 0.0
+        self.sum = 0.0
+        self.count = 0.0
+    
+    def update(self, val, n):
+        # self.val = val
+        self.sum += val * n
+        self.count += n
+        self.avg = self.sum / self.count

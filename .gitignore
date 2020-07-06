@@ -1,1 +1,12 @@
-project-1/
+# Files to ignore
+
+# Projects
+project-final/
+proposal/
+extra_unsup_labels/
+
+# CS294 Homework
+homework/
+
+# MO433 summaries
+summaries/

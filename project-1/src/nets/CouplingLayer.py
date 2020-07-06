@@ -1,8 +1,35 @@
 import torch
 import torch.nn as nn 
 
-from ResNet import ResNet
-from misc import checkerboard_mask
+from nets.ResNet import ResNet
+
+mask_checkboard = 0
+mask_channelwise = 1
+
+def checkerboard_mask(height, width, reverse=False, dtype=torch.float32, device=None, requires_grad=False):
+    """Get a checkerboard mask, such that no two entries adjacent entries
+    have the same value. In non-reversed mask, top-left entry is 0.
+    Args:
+        height (int): Number of rows in the mask.
+        width (int): Number of columns in the mask.
+        reverse (bool): If True, reverse the mask (i.e., make top-left entry 1).
+            Useful for alternating masks in RealNVP.
+        dtype (torch.dtype): Data type of the tensor.
+        device (torch.device): Device on which to construct the tensor.
+        requires_grad (bool): Whether the tensor requires gradient.
+    Returns:
+        mask (torch.tensor): Checkerboard mask of shape (1, 1, height, width).
+    """
+    checkerboard = [[((i % 2) + j) % 2 for j in range(width)] for i in range(height)]
+    mask = torch.tensor(checkerboard, dtype=dtype, device=device, requires_grad=requires_grad)
+
+    if reverse:
+        mask = 1 - mask
+
+    # Reshape to (1, 1, height, width) for broadcasting with tensors of shape (B, C, H, W)
+    mask = mask.reshape(1, 1, height, width)
+
+    return mask
 
 class CouplingLayer(nn.Module):
     """
@@ -20,12 +47,12 @@ class CouplingLayer(nn.Module):
         self.reverse_mask = reverse_mask
 
         # Build scale and translate network
-        if self.mask == 1: # channel-wise mask
+        if self.mask == mask_channelwise:
             cin //= 2
         
         self.st_net = ResNet(cin, cmid, 2 * cin, nblocks=nblocks, 
                             kernel=3, padding=1, 
-                            double_after_norm=(self.mask == 0) # checkboard mask
+                            double_after_norm=(self.mask == mask_checkboard)
                             )
         
         # Learn scale for s
@@ -55,7 +82,7 @@ class CouplingLayer(nn.Module):
                 x = (x + t) * exp_s
 
                 # Add log-determinant of the Jacobian
-                sldj += s.view(s.size(0), -1).sum(-1)
+                sldj += s.reshape(s.size(0), -1).sum(-1)
         else:
             # Channel-wise mask
             if self.reverse_mask:
@@ -80,7 +107,7 @@ class CouplingLayer(nn.Module):
                 x_change = (x_change + t) * exp_s
 
                 # Add log-determinant of the Jacobian
-                sldj += s.view(s.size(0), -1).sum(-1)
+                sldj += s.reshape(s.size(0), -1).sum(-1)
 
             if self.reverse_mask:
                 x = torch.cat((x_id, x_change), dim=1)
