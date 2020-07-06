@@ -7,7 +7,7 @@ input/
 report/*
 !report/images
 !report/*.tex
-!report/.pdf
+!report/*.pdf
 
 # Output
 output
