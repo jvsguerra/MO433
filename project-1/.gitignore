@@ -1,0 +1,26 @@
+# Files to ignore
+
+# Input
+input/
+
+# Report
+report/*
+!report/images
+!report/*.tex
+!report/.pdf
+
+# Output
+output
+
+# Extra
+*.pyc
+.vscode
+texput.log
+
+# Debug directories
+src/__pycache__/
+src/*.pyc
+src/utils/__pycache__/
+src/utils/*.pyc
+src/nets/__pycache__/
+src/nets/*.pyc
