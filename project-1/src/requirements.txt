@@ -1,7 +1,0 @@
-torch
-torchvision
-sklearn
-matplotlib
-numpy
-scipy
-tqdm

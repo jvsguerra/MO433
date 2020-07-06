@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Files to ignore
 
 # Projects
@@ -10,3 +11,11 @@ homework/
 
 # MO433 summaries
 summaries/
+=======
+project-1/
+project-final/
+homework/
+summaries/
+proposal/
+extra_unsup_labels/
+>>>>>>> 903e234249ccc17922e2ba541397c15be378c5f0
