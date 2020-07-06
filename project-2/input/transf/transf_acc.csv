@@ -1,0 +1,6 @@
+transf_1,Color drop,Color jitter,Crop and resize,Gaussian blur,Horizontal flip,Average
+Color drop,23.16,35.52,45.85,23.57,27.64,31.148000000000003
+Color jitter,34.83,31.57,48.57,32.18,30.59,35.548
+Crop and resize,46.92,48.6,37.74,37.12,36.92,41.46
+Gaussian blur,25.480000000000004,31.07,36.15,27.82,29.6,30.024
+Horizontal flip,26.25,30.99,36.85,32.35,28.49,30.986
