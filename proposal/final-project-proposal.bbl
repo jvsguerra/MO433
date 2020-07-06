@@ -1,0 +1,258 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{zhang2018}{article}{}
+      \name{author}{5}{}{%
+        {{hash=948f26b38fba102b6f820808e554bc53}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Jing},
+           giveni={J\bibinitperiod}}}%
+        {{hash=55926e2ed0c54f92266d978954a4cdc3}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Tong},
+           giveni={T\bibinitperiod}}}%
+        {{hash=46e3a90300a599dc3588c3ceb79df78b}{%
+           family={Dai},
+           familyi={D\bibinitperiod},
+           given={Yuchao},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=f142a1231b19339a87c2bb11d5087ae3}{%
+           family={Harandi},
+           familyi={H\bibinitperiod},
+           given={Mehrtash},
+           giveni={M\bibinitperiod}}}%
+        {{hash=94b8022d4a025176f7356248b253cb7e}{%
+           family={Hartley},
+           familyi={H\bibinitperiod},
+           given={Richard\bibnamedelima I.},
+           giveni={R\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \strng{namehash}{16a9e789d37ede8891401bf9dd7fec22}
+      \strng{fullhash}{fde2a4e0e8b8e1f3156efa7e5431288d}
+      \strng{bibnamehash}{fde2a4e0e8b8e1f3156efa7e5431288d}
+      \strng{authorbibnamehash}{fde2a4e0e8b8e1f3156efa7e5431288d}
+      \strng{authornamehash}{16a9e789d37ede8891401bf9dd7fec22}
+      \strng{authorfullhash}{fde2a4e0e8b8e1f3156efa7e5431288d}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{CoRR}
+      \field{title}{Deep Unsupervised Saliency Detection: {A} Multiple Noisy Labeling Perspective}
+      \field{volume}{abs/1803.10910}
+      \field{year}{2018}
+      \verb{eprint}
+      \verb 1803.10910
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1803.10910
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1803.10910
+      \endverb
+    \endentry
+    \entry{symonyan2014}{article}{}
+      \name{author}{3}{}{%
+        {{hash=9d16b7284df92c9adaee86c37ab992df}{%
+           family={Simonyan},
+           familyi={S\bibinitperiod},
+           given={Karen},
+           giveni={K\bibinitperiod}}}%
+        {{hash=85ab53268da1006b51b453d57d3566f2}{%
+           family={Vedaldi},
+           familyi={V\bibinitperiod},
+           given={Andrea},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c72fc39e94030f67717052309266a44d}{%
+           family={Zisserman},
+           familyi={Z\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{400aa4a24354d63b49a6b7b6275bf2a4}
+      \strng{fullhash}{400aa4a24354d63b49a6b7b6275bf2a4}
+      \strng{bibnamehash}{400aa4a24354d63b49a6b7b6275bf2a4}
+      \strng{authorbibnamehash}{400aa4a24354d63b49a6b7b6275bf2a4}
+      \strng{authornamehash}{400aa4a24354d63b49a6b7b6275bf2a4}
+      \strng{authorfullhash}{400aa4a24354d63b49a6b7b6275bf2a4}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{CoRR}
+      \field{title}{Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps}
+      \field{volume}{abs/1312.6034}
+      \field{year}{2014}
+      \verb{eprint}
+      \verb 1312.6034
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/pdf/1312.6034.pdf
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/pdf/1312.6034.pdf
+      \endverb
+    \endentry
+    \entry{zhang2014}{article}{}
+      \name{author}{4}{}{%
+        {{hash=ac96d0501ac3e57fa3d92d318b45fc31}{%
+           family={Borji},
+           familyi={B\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bfbe355b6a8257baeffd5b8814bc5c57}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Ming-Ming},
+           giveni={M\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=9d1ec4eea0b39f5538301a22cc5fc4e7}{%
+           family={Jiang},
+           familyi={J\bibinitperiod},
+           given={Huaizu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=508f0a4e80af71a1970f575437811489}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jia},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{12d37809b90be6d448ba21f210fbd626}
+      \strng{fullhash}{c00c1c72418538ca352b7f86d4a6823b}
+      \strng{bibnamehash}{c00c1c72418538ca352b7f86d4a6823b}
+      \strng{authorbibnamehash}{c00c1c72418538ca352b7f86d4a6823b}
+      \strng{authornamehash}{12d37809b90be6d448ba21f210fbd626}
+      \strng{authorfullhash}{c00c1c72418538ca352b7f86d4a6823b}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{CoRR}
+      \field{title}{Salient Object Detection: {A} Survey}
+      \field{volume}{abs/1411.5878}
+      \field{year}{2014}
+      \verb{eprint}
+      \verb 1411.5878
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1411.5878
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1411.5878
+      \endverb
+    \endentry
+    \entry{zhang2017}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=59d10f8a548ee180b28909fb783a76eb}{%
+           family={{Zhang}},
+           familyi={Z\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=7fc1f626087edf07f8df670944037429}{%
+           family={{Han}},
+           familyi={H\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1f26f664835ac6c347db22001b657f1a}{%
+           family={{Zhang}},
+           familyi={Z\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{bafc7193cae5635de01050a4bf9bddba}
+      \strng{fullhash}{bafc7193cae5635de01050a4bf9bddba}
+      \strng{bibnamehash}{bafc7193cae5635de01050a4bf9bddba}
+      \strng{authorbibnamehash}{bafc7193cae5635de01050a4bf9bddba}
+      \strng{authornamehash}{bafc7193cae5635de01050a4bf9bddba}
+      \strng{authorfullhash}{bafc7193cae5635de01050a4bf9bddba}
+      \field{sortinit}{6}
+      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2017 IEEE International Conference on Computer Vision (ICCV)}
+      \field{title}{Supervision by Fusion: Towards Unsupervised Learning of Deep Salient Object Detector}
+      \field{year}{2017}
+      \field{pages}{4068\bibrangedash 4076}
+      \range{pages}{9}
+    \endentry
+    \entry{wang2017}{article}{}
+      \name{author}{6}{}{%
+        {{hash=06b47d0dcf324aeafa35d1a8666637ba}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Jingdong},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9d1ec4eea0b39f5538301a22cc5fc4e7}{%
+           family={Jiang},
+           familyi={J\bibinitperiod},
+           given={Huaizu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=b66719f0968b783a744f86773a261e1a}{%
+           family={Yuan},
+           familyi={Y\bibinitperiod},
+           given={Zejian},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=bfbe355b6a8257baeffd5b8814bc5c57}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Ming-Ming},
+           giveni={M\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=bde4bea0fee3c3f08af8c3e939e45f66}{%
+           family={Hu},
+           familyi={H\bibinitperiod},
+           given={Xiaowei},
+           giveni={X\bibinitperiod}}}%
+        {{hash=fdaaccb29e48314699fa3a9976a15158}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Nanning},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{3417e25cb0cb686c45653bf3072b037c}
+      \strng{fullhash}{f7cf1be1c1ebd513b4bfb2f272240d3a}
+      \strng{bibnamehash}{f7cf1be1c1ebd513b4bfb2f272240d3a}
+      \strng{authorbibnamehash}{f7cf1be1c1ebd513b4bfb2f272240d3a}
+      \strng{authornamehash}{3417e25cb0cb686c45653bf3072b037c}
+      \strng{authorfullhash}{f7cf1be1c1ebd513b4bfb2f272240d3a}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1573-1405}
+      \field{journaltitle}{International Journal of Computer Vision}
+      \field{number}{2}
+      \field{title}{Salient Object Detection: A Discriminative Regional Feature Integration Approach}
+      \field{volume}{123}
+      \field{year}{2017}
+      \field{pages}{251\bibrangedash 268}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1007/s11263-016-0977-3
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
