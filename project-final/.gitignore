@@ -1,0 +1,38 @@
+### Files to ignore ###
+
+# Models
+input/models/
+input/models.zip
+
+# Results
+input/results/
+
+# Output
+output/
+
+# Report
+report/*
+!report/images
+!report/*.tex
+
+# Dataset
+input/dataset/
+input/dataset/MSRA-B.zip
+
+# Unsupervised labels
+input/unsup_labels/        
+input/unsup_labels.zip
+
+# Cache
+src/__pycache__/
+src/*pyc
+src/models/__pycache__/
+src/models/*pyc
+src/utils/__pycache__/
+src/utils/unsup_labels/pyimgsaliency/__pycache__/
+src/utils/unsup_labels/pyimgsaliency/*pyc
+src/utils/unsup_labels/SaliencyRC/__pycache__/
+src/utils/unsup_labels/SaliencyRC/*pyc
+
+# VSCode editor settings
+.vscode/

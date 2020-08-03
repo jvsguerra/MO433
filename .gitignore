@@ -1,7 +1,6 @@
 # Files to ignore
 
 # Projects
-project-final/
 extra_unsup_labels/
 
 # CS294 Homework
