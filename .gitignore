@@ -1,10 +1,2 @@
 # Files to ignore
 
-# Projects
-extra_unsup_labels/
-
-# CS294 Homework
-homework/
-
-# MO433 summaries
-summaries/

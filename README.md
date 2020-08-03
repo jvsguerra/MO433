@@ -1,1 +1,89 @@
-# MO433
+# MO433 repository
+
+This repository contains the my material for the course Deep Unsupervised Learning (01s2020 - MO433) of UNICAMP.
+
+The repository mainly organizes as follows: 
+```
+project-1/
+    report/
+        images/
+            *.png
+        report.tex
+        report.pdf
+    src/
+        nets/
+            *.py
+        utils/
+            *.py
+        main.py
+        requirements.txt
+    .gitignore
+    .gitlab-ci.yml
+    Makefile
+    p1.pdf
+project-2/
+    input/
+        batch/
+            *.csv
+        final/
+            *.csv
+        optim/
+            *.csv
+        simfunc/
+            *.csv
+        transf/
+            *.csv
+    report/
+        images/
+            *.png
+        report.tex
+        report.pdf
+    src/
+        nets/
+            *.py
+        utils/
+            *.py
+        main.py
+        requirements.txt
+        trainer.py
+    .gitignore
+    .gitlab-ci.yml
+    Makefile
+    p2.pdf
+project-final/
+    input/
+        results.zip
+    report/
+        images/
+            *.png
+        report.tex
+        report.pdf
+    src/
+        models/
+            *.py
+        utils/
+            unsup_labels/
+                SaliencyRC/ # python2
+                pyimgsaliency/ # python2
+                unsup_labels.py
+            *.py
+        Trainer.py
+        main.py
+        requirements.txt
+    .gitignore
+    .gitlab-ci.yml
+    Makefile
+proposal/
+    images/
+        fig1.png
+    final-project-proposal.pdf
+    final-project-proposal.tex
+    p3.pdf
+    run_docker_pdf.sh    
+summaries/ # Contributed by fellow classmates
+    lesson-*-*.pdf
+.gitignore
+README.md
+Schedule.png
+Syllabus.pdf
+```
